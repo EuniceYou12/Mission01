@@ -45,7 +45,13 @@ dependencies {
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
 
 }
-
+tasks.register('copyPrivate') {
+    copy {
+        from './Mission01-config'
+        include "application.yml"
+        into 'src/main/resources'
+    }
+}
 tasks.named('bootBuildImage') {
     builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
