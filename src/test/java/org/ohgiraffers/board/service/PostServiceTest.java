@@ -134,8 +134,8 @@ public class PostServiceTest {
 
         //then
         assertThat(updatePostResponse.getPostId()).isEqualTo(savedPost.getPostId());
-        assertThat(updatePostResponse.getPostId()).isEqualTo("변경된 테스트 제목");
-        assertThat(updatePostResponse.getPostId()).isEqualTo("변경된 테스트 내용");
+        assertThat(updatePostResponse.getTitle()).isEqualTo(updatePostRequest.getTitle());
+        assertThat(updatePostResponse.getContent()).isEqualTo(updatePostRequest.getContent());
     }
 //        //given
 //        Long postId = 1L;

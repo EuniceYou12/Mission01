@@ -19,7 +19,10 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -98,7 +101,7 @@ public class PostControllerTest {
         given(postService.readPostById(any())).willReturn(response);
 
         //when & then
-        mockMvc.perform(get("/api/v1/posts/{postId}"))
+        mockMvc.perform(get("/api/v1/posts/{postId}",postId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.postId").value(1L))
                 .andExpect(jsonPath("$.title").value("테스트 제목"))
@@ -142,7 +145,7 @@ public class PostControllerTest {
         given(postService.deletePost(any())).willReturn(response);
 
         //when & then
-        mockMvc.perform(delete("api/v1/post/{postId}", postId))
+        mockMvc.perform(delete("/api/v1/posts/{postId}", postId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.postId").value(1L))
                 .andDo(print());
@@ -170,8 +173,8 @@ public class PostControllerTest {
         mockMvc.perform(get("/api/v1/posts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].postId").value(readPostResponse.getPostId()))
-                .andExpect(jsonPath("$.content[0].title").value(readPostResponse.getPostId()))
-                .andExpect(jsonPath("$.content[0].content").value(readPostResponse.getPostId()))
+                .andExpect(jsonPath("$.content[0].title").value(readPostResponse.getTitle()))
+                .andExpect(jsonPath("$.content[0].content").value(readPostResponse.getContent()))
                 .andDo(print());
 
     }
