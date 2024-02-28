@@ -30,8 +30,9 @@ import org.springframework.web.bind.annotation.*;
  * 웹의 장점을 최대한 활용 할 수 있는 아키텍쳐 스타일이다.
   */
 @Tag(name = "posts", description = "게시글 API")
-@Controller
-@ResponseBody
+@RestController
+//@Controller
+//@ResponseBody
 // @RequestMapping : 특정 URL을 매핑하게 도와준다.
 @RequestMapping("/api/v1/posts")
 // @RequireArgsConstructor : final 혹은 @NonNull 어토네이션이 붙ㅌ은 필드에대한 생성자를 자동으로 생성해준다.

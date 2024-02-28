@@ -1,41 +1,24 @@
-# application.yml : 스프링부트와 같은 스프링 프로젝트 기반 어플리케이션에서 사용되는 설정 파일
-# 만약 application.properties 가 있다면, 어플리케이션을 실행할 시 properties 의 설정으로 실행이 됨.
-
 server:
-  # 서버 포트 번호 설정
   port: 8080
   servlet:
-    # 웹 어플리케이션에서 문자 인코딩 문제를 방지하기 위한 설정들
     encoding:
       charset: UTF-8
       enabled: true
       force: true
 
 spring:
-  # mysql ohgiraffers 계정 추가 password: ohgiraffes
-  # ohgiraffers_db database 생성
-  # ohgiraffers_db 에 대한 권한을 ohgiraffers 계정에 부여 (localhost 에서만 접속 가능하게)
-  #  spring이랑 mysql 이 연결되도록 connection 설정 해줌.
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/luludb?serverTimezone=Asia/Seoul
-    username: lulu
-    password: 1234
-
-    # JPA/Hibernate 설정
-    # 하이버네이트 란?
-    # 하이버네이트는 JPA의 구현체로, 자바 객체와 데이터베이스 테이블 사이의 매핑을 관리해주는 ORM(Object-Relational-Mapping)
-    # ddl-auto
-    # create : application 시작 시, 새로운 데이터베이스 스키마를 생성, 기존 스키마는 사라짐. 어플리케이션 종료시 데이터는 남아있음.
-    # create-drop : 어플리케이션 시작시 새로운 데이터베이스 스키마를 생성, 기존 스키마는 사라짐. 어플리케이션 종료시 스키마를 삭제함.
-    # update : 어플리케이션 시작시 데이터베이스 스키마를 업데이트 함.
+    url: jdbc:mysql://ec2-15-164-228-43.ap-northeast-2.compute.amazonaws.com:3306/ohgiraffers_db?serverTimezone=Asia/Seoul
+    username: ohgiraffers
+    password: ohgiraffers
+    
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57Dialect
-        # 하이버네이트가 생성해주는 SQL문을 콘솔에 보이도록 설정
         show_sql: true
 
 

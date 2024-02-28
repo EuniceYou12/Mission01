@@ -22,7 +22,7 @@ public class SwaggerConfig {
 
         return GroupedOpenApi.builder()
                 .group("1. 게시글 관리")
-                .packagesToScan()
+                .packagesToScan(path)
                 .build();
     }
 
@@ -34,7 +34,7 @@ public class SwaggerConfig {
 
         return GroupedOpenApi.builder()
                 .group("2. 아직 미정")
-                .packagesToScan()
+                .packagesToScan(path)
                 .build();
     }
 
